@@ -14,7 +14,7 @@ namespace Task1
             int distanceCm = int.Parse(Console.ReadLine()); 
             int fullMeters = ConvertToFullMeters(distanceCm);
             Console.WriteLine($"Полные метры: {fullMeters}");
-            
+           
         }
         static int ConvertToFullMeters(int centimeters)
         {
