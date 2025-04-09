@@ -1,0 +1,63 @@
+@model WebApplication1.Models.Movie
+
+@{
+    ViewData["Title"] = "Детали фильма";
+}
+
+<div class="container py-4">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index">Список фильмов</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@Model.Title</li>
+        </ol>
+    </nav>
+
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0"><i class="bi bi-film me-2"></i>@Model.Title</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="mb-3">
+                        <h5 class="card-title"><i class="bi bi-tags me-2"></i>Жанр</h5>
+                        <div class="p-2 bg-light rounded">@Model.Genre</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <h5 class="card-title"><i class="bi bi-calendar-event me-2"></i>Год выпуска</h5>
+                        <div class="p-2 bg-light rounded">@Model.Year</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <h5 class="card-title"><i class="bi bi-star me-2"></i>Рейтинг</h5>
+                        <div class="p-2 bg-light rounded d-flex align-items-center">
+                            <div class="rating-stars me-3">
+                                @for (int i = 1; i <= 10; i++)
+                                {
+                                    <i class="bi @(i <= Model.Rating ? "bi-star-fill text-warning" : "bi-star")" style="font-size: 1.2rem;"></i>
+                                }
+                            </div>
+                            <span class="fs-5">@Model.Rating / 10</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-3">
+                        <div class="card-header bg-secondary text-white">
+                            <i class="bi bi-info-circle me-2"></i>Информация
+                        </div>
+                        <div class="card-body">
+                            <p><strong>ID:</strong> @Model.Id</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="bi bi-arrow-left me-1"></i>Назад к списку
+            </a>
+        </div>
+    </div>
+</div> 

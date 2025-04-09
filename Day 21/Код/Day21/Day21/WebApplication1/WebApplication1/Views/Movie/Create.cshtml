@@ -1,0 +1,78 @@
+@model WebApplication1.ViewModels.MovieViewModel
+
+@{
+    ViewData["Title"] = "Добавление фильма";
+}
+
+<div class="container py-4">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index">Список фильмов</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Добавление фильма</li>
+        </ol>
+    </nav>
+
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0"><i class="bi bi-plus-circle me-2"></i>Добавление нового фильма</h2>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="Title" class="form-label fw-bold">
+                                <i class="bi bi-film me-1"></i>@Html.DisplayNameFor(model => model.Title)
+                            </label>
+                            <input asp-for="Title" class="form-control" placeholder="Введите название фильма" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label asp-for="Genre" class="form-label fw-bold">
+                                <i class="bi bi-tags me-1"></i>@Html.DisplayNameFor(model => model.Genre)
+                            </label>
+                            <input asp-for="Genre" class="form-control" placeholder="Введите жанр" />
+                            <span asp-validation-for="Genre" class="text-danger"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="Year" class="form-label fw-bold">
+                                <i class="bi bi-calendar-event me-1"></i>@Html.DisplayNameFor(model => model.Year)
+                            </label>
+                            <input asp-for="Year" class="form-control" placeholder="Например: 2023" />
+                            <span asp-validation-for="Year" class="text-danger"></span>
+                            <div class="form-text">Год должен быть между 1900 и 2100.</div>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label asp-for="Rating" class="form-label fw-bold">
+                                <i class="bi bi-star me-1"></i>@Html.DisplayNameFor(model => model.Rating)
+                            </label>
+                            <input asp-for="Rating" class="form-control" placeholder="Оценка от 1 до 10" />
+                            <span asp-validation-for="Rating" class="text-danger"></span>
+                            <div class="form-text">Допустимое значение от 1 до 10.</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border-top pt-3 mt-4">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-check-circle me-1"></i>Добавить фильм
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary ms-2">
+                        <i class="bi bi-x-circle me-1"></i>Отмена
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} 
